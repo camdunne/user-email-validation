@@ -2,7 +2,8 @@ import MuiCard from '@mui/material/Card'
 import { styled } from '@mui/material/styles'
 
 const Card = styled(MuiCard)(() => ({
-  display: 'flex',
+  // display: 'flex',
+  flexGrow: 1,
   borderRadius: '16px',
   flexDirection: 'column',
   alignSelf: 'center',

@@ -1,0 +1,22 @@
+#parentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+  position: relative;
+}
+
+#content {
+  height: 90%;
+}
+
+#signin {
+  margin-top: 20px;
+}
+
+#footer {
+  left: -15;
+  bottom: 0;
+  height: 7%;
+  position: absolute;
+  width: 100%;
+}

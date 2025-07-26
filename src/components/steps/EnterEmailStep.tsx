@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField'
 import validator from 'validator'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
-import FormHelperText from '@mui/material/FormHelperText'
 
 type EnterEmailStepProps = {
   step: number
@@ -38,8 +37,8 @@ const EnterEmailStep = ({ step, setStep }: EnterEmailStepProps) => {
   if (step === 0) {
     return (
       <form onSubmit={handleSubmit}>
-        <FormControl error={error}>
-          <FormLabel >Email</FormLabel>
+        <FormControl error={error} fullWidth>
+          <FormLabel>Email</FormLabel>
           <TextField
             id="email"
             size="small"
@@ -48,8 +47,11 @@ const EnterEmailStep = ({ step, setStep }: EnterEmailStepProps) => {
             error={error}
             helperText={errMsg}
             value={input}
-            onChange={handleChange} />
-          <Button variant="contained" type="submit">Next</Button>
+            onChange={handleChange}
+            fullWidth
+            style={{ marginBottom: '20px' }}
+          />
+          <Button variant="contained" type="submit" fullWidth>Next</Button>
         </FormControl>
       </form >
     )
