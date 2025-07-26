@@ -6,7 +6,12 @@ import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 
-const EnterEmailStep = () => {
+type EnterEmailStepProps = {
+  step: number
+  setStep: (step: number) => void
+}
+
+const EnterEmailStep = ({ step, setStep }: EnterEmailStepProps) => {
   const [input, setInput] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
   const [errMsg, setErrMsg] = useState<string>('')
@@ -27,24 +32,30 @@ const EnterEmailStep = () => {
       return
     }
     // go to next step
+    setStep(1)
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <FormControl error={error}>
-        <FormLabel >Email</FormLabel>
-        <FormHelperText>{errMsg}</FormHelperText>
-        <TextField
-          id="email"
-          size="small"
-          variant="outlined"
-          placeholder="Enter your email"
-          value={input}
-          onChange={handleChange} />
-        <Button variant="contained" type="submit">Next</Button>
-      </FormControl>
-    </form >
-  )
+  if (step === 0) {
+    return (
+      <form onSubmit={handleSubmit}>
+        <FormControl error={error}>
+          <FormLabel >Email</FormLabel>
+          <TextField
+            id="email"
+            size="small"
+            variant="outlined"
+            placeholder="Enter your email"
+            error={error}
+            helperText={errMsg}
+            value={input}
+            onChange={handleChange} />
+          <Button variant="contained" type="submit">Next</Button>
+        </FormControl>
+      </form >
+    )
+  } else {
+    return null
+  }
 }
 
 export default EnterEmailStep
