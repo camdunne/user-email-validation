@@ -10,7 +10,8 @@ type VerifyCodeStepProps = {
   setStep: (step: number) => void
 }
 
-const defaultCodeState = new Array(4).fill('')
+const inputLength = 4
+const defaultCodeState = new Array(inputLength).fill('')
 const MAGIC_CODE = '9876'
 
 const VerifyCodeStep = ({ step, setStep }: VerifyCodeStepProps) => {
@@ -19,11 +20,11 @@ const VerifyCodeStep = ({ step, setStep }: VerifyCodeStepProps) => {
   const [error, setError] = useState<boolean>(false)
   const [errMsg, setErrMsg] = useState<string>('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, key: number) => {
     setCodeMap((codeMap: string[]) => {
       codeMap[key] = e.target.value
-      // check if should reenablesubmitbutton
-      const disableSubmitButton = codeMap.filter(el => el !== '').length !== codeMap.length
+      // check if should reenable submit button
+      const disableSubmitButton = codeMap.filter(el => el !== '').length !== inputLength
       setDisableSubmit(disableSubmitButton)
 
       return [...codeMap]
@@ -33,7 +34,7 @@ const VerifyCodeStep = ({ step, setStep }: VerifyCodeStepProps) => {
   }
 
   const handleClearInput = () => {
-    setCodeMap(defaultCodeState)
+    setCodeMap([...defaultCodeState])
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -59,14 +60,13 @@ const VerifyCodeStep = ({ step, setStep }: VerifyCodeStepProps) => {
           <FormLabel>Please enter the unique 4-digit code that we sent in your inbox.</FormLabel>
           <div style={{ display: 'flex' }}>
             {codeMap.map((input, i) => {
-              const key = i.toString()
+              const key = `input-${i}`
               return <TextField
                 error={error}
                 style={{ margin: '8px' }}
-                id={key}
                 key={key}
                 value={input}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e, key)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e, i)}
                 size="small"
                 variant="outlined"
                 slotProps={{ htmlInput: { maxLength: 1 } }}
