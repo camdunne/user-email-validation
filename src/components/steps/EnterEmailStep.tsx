@@ -37,7 +37,7 @@ const EnterEmailStep = ({ step, setStep }: EnterEmailStepProps) => {
   if (step === 0) {
     return (
       <form onSubmit={handleSubmit}>
-        <FormControl error={error} fullWidth>
+        <FormControl fullWidth>
           <FormLabel>Email</FormLabel>
           <TextField
             id="email"

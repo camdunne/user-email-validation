@@ -2,7 +2,7 @@ import MuiStepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const steps = [
@@ -30,8 +30,8 @@ const Stepper = ({ step, setStep }: StepperProps) => {
   return (
     <>
       <div style={{ display: 'flex' }}>
-        <Button disabled={step !== 1} onClick={handlePrev}><ArrowBackIosIcon /></Button>
-        <Typography variant="h6" style={{ fontSize: '.9em', fontWeight: 'bold', paddingTop: '.5em' }}>
+        {step === 1 ? <IconButton onClick={handlePrev}><ArrowBackIosIcon /></IconButton> : null}
+        <Typography variant="h6" style={{ fontSize: '.9em', fontWeight: 'bold', paddingTop: '.7em' }}>
           Sign in to CompanyName Cloud
         </Typography>
 
