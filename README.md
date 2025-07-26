@@ -1,14 +1,16 @@
 # Installation
-Please run:
+Run the following command to install node packages
 ```
 npm install
 ```
 
 # Run Application
-run:
+Run the following command to run the application
 ```
 npm start
 ```
+
+Application will be served at http://localhost:1234
 
 # Demo
 
